@@ -1,0 +1,72 @@
+/*
+id: 22011747
+name: irfan
+group: g2
+lab: L4
+*/
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Node {
+public:
+    string name;
+    Node* next;
+
+    Node(const string& name) {
+        this->name = name;
+        this->next = nullptr;
+    }
+};
+
+class LinkedList {
+public:
+    Node* head;
+    Node* tail;
+
+    LinkedList() {
+        head = nullptr;
+        tail = nullptr;
+    }
+
+    void add_item(Node* node) {
+        if (!head) {
+            head = node;
+            tail = node;
+        } else {
+            tail->next = node;
+            tail = node;
+            tail->next = head;
+        }
+    }
+
+    void display_list() {
+    if (!head) {
+        cout << "List is empty." << endl;
+        return;
+    }
+
+    Node* current = head;
+    do {
+        cout << current->name << " -> ";
+        current = current->next;
+    } while (current != head);    
+
+    cout << "NULL" << endl;
+    }
+};
+
+int main() {
+    LinkedList std_list;
+
+    std_list.add_item(new Node("Ahmed")); // 1
+    std_list.add_item(new Node("Ali"));   // 2
+    std_list.add_item(new Node("Alice")); // 3
+
+
+    cout << "Final Linked List:" << endl;
+    std_list.display_list();
+
+    return 0;
+}
