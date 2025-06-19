@@ -1,0 +1,30 @@
+//aHMAD iRFAN bIN aNIZAN 22011747
+#include <iostream>
+using namespace std;
+
+int main() 
+{
+    struct Student{
+        int id;
+        string name;
+        int contact;
+        string email; 
+    };
+    
+    Student student[5];
+    
+    for (int i=0;i < 5;i++){
+        cout<<"Name: "; getline(cin,student[i].name);
+        cout<<"ID: "; cin>>student[i].id;
+        cout<<"Contact: "; cin>>student[i].contact;
+        cout<<"Email: "; cin>>student[i].email;cout<<"\n";
+    }
+    
+    for (int i=0;i < 5;i++){
+        cout<<"Name" << i+1 << ":" << student[i].name;
+        cout<<"ID: "; cout<<student[i].id;
+        cout<<"Contact: "; cout<<student[i].contact;
+        cout<<"Email: "; cout<<student[i].email;
+    }
+    return 0;
+}
