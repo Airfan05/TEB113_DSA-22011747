@@ -1,0 +1,98 @@
+/*
+id: 22011747
+name: irfan
+group: g2
+lab: L3 (singly)
+*/
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Node {
+public:
+    string name;
+    Node* next;
+
+    Node(const string& name) {
+        this->name = name;
+        this->next = nullptr;
+    }
+};
+
+class LinkedList {
+public:
+    Node* head;
+    Node* tail;
+
+    LinkedList() {
+        head = nullptr;
+        tail = nullptr;
+    }
+
+    void add_item(Node* node) {
+        if (!head) {
+            head = node;
+            tail = node;
+        } else {
+            tail->next = node;
+            tail = node;
+        }
+    }
+
+    void display_list() {
+        Node* current = head;
+        while (current != nullptr) {
+            cout << current->name << " -> ";
+            current = current->next;
+        }
+        cout << "nullptr" << endl;
+    }
+
+    void delete_value(const string& name) {
+        while (head && head->name == name) {
+            Node* temp = head;
+            head = head->next;
+            delete temp;
+        }
+
+        Node* current = head;
+
+        while (current && current->next) {
+            if (current->next->name == name) {
+                Node* temp = current->next;
+                current->next = current->next->next;
+                delete temp;
+            } else {
+                current = current->next;
+            }
+        }
+
+        tail = head;
+        while (tail && tail->next) {
+            tail = tail->next;
+        }
+    }
+};
+
+
+int main() {
+    // Create nodes
+    Node* node1 = new Node("Ali");
+    Node* node2 = new Node("Ahmed");
+    Node* node3 = new Node("Alice");
+    LinkedList std_list;
+    std_list.add_item(node1);
+    std_list.add_item(node2);
+    std_list.add_item(node3);
+
+    cout << "Before deletion:" << endl;
+    std_list.display_list();
+    std_list.delete_value("Ahmed");
+
+    cout << "After deletion:" << endl;
+    std_list.display_list();
+
+
+    return 0;
+}
